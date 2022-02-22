@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UiReportItem } from '@reporting-system/api-interfaces';
+import { ReportsEntity } from '@reporting-system/api-interfaces';
 
 @Component({
   selector: 'reporting-system-list-item',
@@ -26,7 +26,7 @@ import { UiReportItem } from '@reporting-system/api-interfaces';
 })
 export class ListItemComponent {
   @Input()
-  item!: UiReportItem;
+  item!: ReportsEntity;
 
   @Output()
   blockReport = new EventEmitter<string>();

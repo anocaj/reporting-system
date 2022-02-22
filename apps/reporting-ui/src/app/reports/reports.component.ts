@@ -1,19 +1,27 @@
 import { Component, OnInit } from "@angular/core";
-import { UiReportItem } from "@reporting-system/api-interfaces";
-const testItem:UiReportItem = {id:"1",message:"Hallo",state:"OPEN",type:"SPAM"};
+import { ReportsEntity } from "@reporting-system/api-interfaces";
+import { createReportsEntity } from "../utils/test-utils";
+import { select, Store } from '@ngrx/store';
+import { init } from "../state/reports.actions";
+import { getAllReports } from "../state/reports.selectors";
+import { Observable } from "rxjs";
+
+const testItem:ReportsEntity = {id:"1",message:"Hallo",state:"OPEN",type:"SPAM"};
 @Component({
   selector: 'reporting-system-reports',
   template: `
-   <reporting-system-list [spamList]="(UiReportItems)" (blockReport)="blockReportItem($event)" (resolveReport)="resolveReportItem($event)"></reporting-system-list>
+   <reporting-system-list [spamList]="(reportsEntitys$ | async)" (blockReport)="blockReportItem($event)" (resolveReport)="resolveReportItem($event)"></reporting-system-list>
   `,
   styles: [
   ]
 })
 export class ReportsComponent implements OnInit  {
-  UiReportItems: UiReportItem[] = []
+  reportsEntitys$: Observable<ReportsEntity[]> | undefined
 
+  constructor(private store: Store){}
   ngOnInit() {
-    this.UiReportItems = [testItem,testItem,testItem,testItem,testItem]
+    this.store.dispatch(init());
+    this.reportsEntitys$ = this.store.pipe(select(getAllReports));
   }
 
   blockReportItem(id: string) {

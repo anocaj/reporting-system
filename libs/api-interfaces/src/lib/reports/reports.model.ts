@@ -6,7 +6,7 @@ export enum ReportStates {
 }
 export type ReportState = "OPEN" | "BLOCKED" | "RESOLVED" | "CLOSED"
 type ReportReferenceType = "REPORT"
-type ReportType = "SPAM" | "INFRINGES_PROPERTY" | "VIOLATES_POLICIES"
+export type ReportType = "SPAM" | "INFRINGES_PROPERTY" | "VIOLATES_POLICIES"
 type ReportReferenceResourceType = "ARTICLE" | "REPLY" | "POST"
 interface ReportReference {
     referenceId: string,
@@ -30,7 +30,7 @@ export interface Report {
     created: string
 }
 
-export interface UiReportItem {
+export interface ReportsEntity {
     id: string,
     state: ReportState,
     type: ReportType,
