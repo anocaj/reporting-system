@@ -1,1 +1,1 @@
-export const getGreeting = () => cy.get('h1');
+export const getReportingListItem = () => cy.get('reporting-system-list-item');

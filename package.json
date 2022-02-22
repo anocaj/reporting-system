@@ -10,7 +10,9 @@
     "build": "nx build",
     "test": "nx test",
     "test:ui": "nx run reporting-ui:test",
-    "test:api": "nx run api:test"
+    "test:api": "nx run api:test",
+    "test:e2e":"nx e2e reporting-ui-e2e",
+    "test:e2e:watch":"npm run test:e2e -- --watch"
   },
   "private": true,
   "dependencies": {
