@@ -8,7 +8,9 @@
     "start:ui": "nx serve",
     "start:api": "nx serve api",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "test:ui": "nx run reporting-ui:test",
+    "test:api": "nx run api:test"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,7 @@
     "@angular/router": "~13.2.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/angular": "13.8.3",
     "reflect-metadata": "^0.1.13",
