@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Report } from '@reporting-system/api-interfaces';
 
 @Component({
   selector: 'reporting-system-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `
+  <div class="container mx-auto border-t-2 border-x-2 my-4">
+    <reporting-system-reports></reporting-system-reports>
+  </div>
+  `
 })
-export class AppComponent {
-  hello$ = this.http.get<Report[]>('/api/reports');
-  constructor(private http: HttpClient) {}
-}
+export class AppComponent {}

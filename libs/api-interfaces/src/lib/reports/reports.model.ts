@@ -30,7 +30,7 @@ export interface Report {
     created: string
 }
 
-export interface UiSpamItem {
+export interface UiReportItem {
     id: string,
     state: ReportState,
     type: ReportType,
