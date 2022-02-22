@@ -45,7 +45,7 @@ const reportsReducer = createReducer(
     reportsAdapter.updateOne({ id, changes: { state: 'OPEN' } }, state)
   ),
   on(ReportsActions.resolveReportSuccess, (state, { id }) =>
-    reportsAdapter.updateOne({ id, changes: { state: 'RESOLVED' } }, state)
+    reportsAdapter.removeOne(id, state)
   ),
   on(ReportsActions.resolveReportFailure, (state, { id, error }) =>
     reportsAdapter.updateOne({ id, changes: { state: 'OPEN' } }, state)
