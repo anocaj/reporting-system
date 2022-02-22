@@ -1,13 +1,13 @@
 import { Action } from '@ngrx/store';
-import { ReportsEntity, ReportState, ReportType } from '@reporting-system/api-interfaces';
+
 import { createReportsEntity } from '../utils/test-utils';
 
 import * as ReportsActions from './reports.actions';
 import { State, initialState, reducer } from './reports.reducer';
 
-describe('Reports Reducer', () => {
+describe.only('Reports Reducer', () => {
 
-  describe('valid Reports actions', () => {
+  describe('loadReportsSuccess action', () => {
     it('loadReportsSuccess should return the list of known Reports', () => {
       const reports = [
         createReportsEntity('Report-AAA'),
@@ -24,7 +24,7 @@ describe('Reports Reducer', () => {
 
   describe('unknown action', () => {
     it('should return the previous state', () => {
-      const action = {} as Action;
+      const action:Action = {type: 'Unknown'};
 
       const result = reducer(initialState, action);
 

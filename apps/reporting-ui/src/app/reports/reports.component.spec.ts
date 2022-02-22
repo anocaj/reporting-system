@@ -1,6 +1,9 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { ReportsComponent } from './reports.component';
+import { ReportsService } from './reports.service';
 
 describe('ReportsComponent', () => {
   let component: ReportsComponent;
@@ -8,7 +11,9 @@ describe('ReportsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReportsComponent ]
+      providers:[ReportsService, provideMockStore()],
+      declarations: [ ReportsComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });

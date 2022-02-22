@@ -2,40 +2,33 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { NxModule, DataPersistence } from '@nrwl/angular';
-import { hot } from 'jasmine-marbles';
+import { NxModule } from '@nrwl/angular';
 import { Observable } from 'rxjs';
 
-import * as ReportsActions from './reports.actions';
 import { ReportsEffects } from './reports.effects';
+import { initialState } from './reports.reducer';
+
 
 describe('ReportsEffects', () => {
   let actions: Observable<Action>;
   let effects: ReportsEffects;
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NxModule.forRoot()],
       providers: [
         ReportsEffects,
-        DataPersistence,
         provideMockActions(() => actions),
-        provideMockStore(),
+        provideMockStore({ initialState }),
       ],
     });
-
     effects = TestBed.inject(ReportsEffects);
   });
 
+
   describe('init$', () => {
-    it('should work', () => {
-      actions = hot('-a-|', { a: ReportsActions.init() });
+    test.todo('should handle init action and return a loadReportsSuccess',);
+});
 
-      const expected = hot('-a-|', {
-        a: ReportsActions.loadReportsSuccess({ reports: [] }),
-      });
-
-      expect(effects.init$).toBeObservable(expected);
-    });
-  });
 });
