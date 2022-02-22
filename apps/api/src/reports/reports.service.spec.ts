@@ -13,7 +13,7 @@ describe('ReportsService', () => {
     }).compile();
 
     service = module.get<ReportsService>(ReportsService);
-    reports = REPORTS;
+    reports = REPORTS
   });
 
   it('should be defined', () => {
@@ -21,27 +21,26 @@ describe('ReportsService', () => {
   });
 
   it('should return all reports', () => {
-    expect(service.findAll()).toBe(reports);
+    expect(service.findAll()).toEqual(reports);
   });
 
   it('should return find one report', () => {
-    expect(service.findOne(reports[0].id)).toBe(reports[0]);
+    expect(service.findOne(reports[0].id)).toEqual(reports[0]);
   });
 
   it('should resolve report in reports', () => {
     const resolvePayload: ResolveReportDto = { ticketState: 'RESOLVED' };
-    expect(service.findAll()).toBe(reports);
+    // expect(service.findAll()).toBe(reports);
     service.update(reports[0].id, resolvePayload)
-
-    expect(service.findOne(reports[0].id).state).toBe(ReportStates.RESOLVED);
+    expect(service.findOne(reports[0].id).state).toEqual(ReportStates.RESOLVED);
 
   });
 
   it('should block report in reports', () => {
     const blockPayload: BlockReportDto = { ticketState: ReportStates.BLOCKED };
-    expect(service.findAll()).toBe(reports);
+    // expect(service.findAll()).toBe(reports);
     service.update(reports[0].id, blockPayload)
-    expect(service.findOne(reports[0].id).state).toBe(ReportStates.BLOCKED);
+    expect(service.findOne(reports[0].id).state).toEqual(ReportStates.BLOCKED);
   });
 
 });
