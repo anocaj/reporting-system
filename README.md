@@ -7,6 +7,16 @@ For the backend I have chosen the following main technologies:
 - API: [NestJs](https://nestjs.com/)
 - Due to time limitations I decided to not use a database but instead load the testdata in memory. This means that the changes get not persisted after shutting down the api server.
 
+# Implementation Details
+
+- Block Item:
+  - UI: Will change the Report State from "Open" to "Blocked"
+  - API: Will replace the respective item in memory with the new state
+- Resolve Item:
+  - UI: Will be removed from the List
+  - API: Will replace the respective item in memory with the new state
+- API: get `api/reports` will return all reports with resolved items filtered out. (Filter parameter was not implemented due to time constraint )
+
 ## Run the Application
 
 1. Run `npm install`
