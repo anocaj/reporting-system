@@ -14,7 +14,7 @@ export class ReportsService {
   }
 
   findAll() {
-    return this.reports;
+    return this.reports.filter(report => report.state !== ReportStates.RESOLVED);
   }
 
   findOne(id: string) {
