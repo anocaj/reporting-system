@@ -15,10 +15,8 @@ For the backend I have chosen the following main technologies:
 
 ## Running unit tests
 
-Run `npm run test:ui` to execute the frontend unit tests via [Jest](https://jestjs.io).
-Run `npm run test:api` to execute the backend unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
+- Run `npm run test:ui` to execute the frontend unit tests via [Jest](https://jestjs.io).
+- Run `npm run test:api` to execute the backend unit tests via [Jest](https://jestjs.io).
 
 ## Running end-to-end tests
 
