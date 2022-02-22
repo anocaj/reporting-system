@@ -37,7 +37,19 @@ const reportsReducer = createReducer(
   on(ReportsActions.loadReportsFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(ReportsActions.blockReportSuccess, (state, { id }) =>
+    reportsAdapter.updateOne({ id, changes: { state: 'BLOCKED' } }, state)
+  ),
+  on(ReportsActions.blockReportFailure, (state, { id, error }) =>
+    reportsAdapter.updateOne({ id, changes: { state: 'OPEN' } }, state)
+  ),
+  on(ReportsActions.resolveReportSuccess, (state, { id }) =>
+    reportsAdapter.updateOne({ id, changes: { state: 'RESOLVED' } }, state)
+  ),
+  on(ReportsActions.resolveReportFailure, (state, { id, error }) =>
+    reportsAdapter.updateOne({ id, changes: { state: 'OPEN' } }, state)
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {

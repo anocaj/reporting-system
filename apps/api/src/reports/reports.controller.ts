@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { CreateReportDto, UpdateReportDto } from '@reporting-system/api-interfaces';
 import { ReportsService } from './reports.service';
@@ -29,7 +30,7 @@ export class ReportsController {
     return this.reportsService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateReportDto: UpdateReportDto) {
     return this.reportsService.update(id, updateReportDto);
   }

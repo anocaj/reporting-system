@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ReportsEntity } from "@reporting-system/api-interfaces";
 import { select, Store } from '@ngrx/store';
-import { init } from "../state/reports.actions";
+import { blockReport, init, resolveReport } from "../state/reports.actions";
 import { getAllReports } from "../state/reports.selectors";
 import { Observable } from "rxjs";
 
@@ -23,10 +23,11 @@ export class ReportsComponent implements OnInit  {
   }
 
   blockReportItem(id: string) {
-    console.log(id)
+    this.store.dispatch(blockReport({ id }));
+
   }
   resolveReportItem(id: string) {
-    console.log(id)
+    this.store.dispatch(resolveReport({ id }));
   }
 
 }

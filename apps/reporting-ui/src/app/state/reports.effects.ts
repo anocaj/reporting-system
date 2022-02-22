@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch, optimisticUpdate } from '@nrwl/angular';
-import { map } from 'rxjs';
+import { map, mapTo } from 'rxjs';
 import { ReportsService } from '../reports/reports.service';
 
 import * as ReportsActions from './reports.actions';
@@ -28,6 +28,52 @@ export class ReportsEffects {
           return ReportsActions.loadReportsFailure({ error });
         },
       }),
+    )
+  );
+
+  blockReport$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReportsActions.blockReport),
+      optimisticUpdate({
+        run: (action) => {
+          return this.reportsService.blockReport(action.id).pipe(
+            mapTo({
+              id: action.id,
+              type: ReportsActions.blockReportSuccess.type,
+            })
+          );
+        },
+        undoAction: (action, error: any) => {
+          return {
+            id: action.id,
+            error: error,
+            type: ReportsActions.blockReportFailure.type,
+          };
+        },
+      })
+    )
+  );
+
+  resolveReport$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReportsActions.resolveReport),
+      optimisticUpdate({
+        run: (action) => {
+          return this.reportsService.resolveReport(action.id).pipe(
+            mapTo({
+              id: action.id,
+              type: ReportsActions.resolveReportSuccess.type,
+            })
+          );
+        },
+        undoAction: (action, error: any) => {
+          return {
+            id: action.id,
+            error: error,
+            type: ReportsActions.resolveReportFailure.type,
+          };
+        },
+      })
     )
   );
 }
