@@ -15,7 +15,12 @@ import { ReportsEntity } from '@reporting-system/api-interfaces';
       <div class="line-clamp-2"> Message: {{item?.message ? item?.message : "-"}}</div>
     </div>
     <div class="basis-2/12 basis flex flex-1 flex-col justify-center items-end">
-        <button (click)="blockReportItem(item.id)" class="border-slate-400 border rounded-md w-24 h-8  bg-slate-200 hover:bg-slate-400 mb-1" type="button">Block</button>
+        <button 
+          (click)="blockReportItem(item.id)" 
+          class="border-slate-400 border rounded-md w-24 h-8  bg-slate-200  mb-1 disabled:bg-slate-600" 
+          [class.hover:bg-slate-400]="!isBlocked"
+          [disabled]="isBlocked"
+          type="button">Block</button>
         <button (click)="resolveReportItem(item.id)" class="border-slate-400 border rounded-md w-24 h-8 bg-slate-200 hover:bg-slate-400" type="button">Resolve</button>
     </div>
    
@@ -33,6 +38,11 @@ export class ListItemComponent {
   @Output()
   resolveReport = new EventEmitter<string>();
 
+  
+  public get isBlocked() : boolean {
+    return this.item.state === "BLOCKED"
+  }
+  
   blockReportItem(id: string) {
     this.blockReport.emit(id);
   }
